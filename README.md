@@ -1,1 +1,1 @@
-# Calculaotr
+# Calculator
