@@ -1,5 +1,5 @@
 from tkinter import *
-import math
+import math, re
 
 
 
@@ -10,7 +10,9 @@ class Calculation:
 		self.main()
 
 	def main(self):
-		dividers=['+-/*()']
+		dividers=['+-/*']
+		re.split(dividers, self.to_calculate)
+
 
 
 	def result(self):
@@ -168,7 +170,7 @@ class Calculator:
 		# try:
 		# 	text = self.textarea.get(1.0, "end-1c")
 		# 	self.textarea.delete(1.0, "end")
-		# 	self.textarea.insert(1.0,f"{text} = {eval(clean)}")
+			# self.textarea.insert(1.0,f"{text} = {eval(clean)}")
 		# except SyntaxError:
 		# 	print("Incorrect syntax used.")
 
