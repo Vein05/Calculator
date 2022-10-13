@@ -1,7 +1,8 @@
 from tkinter import *
 import math, re
 
-
+π = math.pi
+e = math.e
 
 class Calculation:
 
@@ -38,6 +39,7 @@ class Calculator:
 		self.window.config(bg="black")
 		self.buttons()
 		self.textarea_func()
+		self.to_eval = ""
 
 	def textarea_func(self):
 		self.textarea=Text(self.window,height="3", width="28",font=("Arial", 25, "bold"))
@@ -46,10 +48,10 @@ class Calculator:
 		self.textarea.grid(row=1,columnspan=self.width)
 
 	def calcuating_func(self,n):
-			self.calculating_things = "" if self.textarea.get(1.0, "end-1c") is None else self.textarea.get(1.0, "end-1c")
-			self.calculating_things+=(n)
+			self.to_eval = "" if self.textarea.get(1.0, "end-1c") is None else self.textarea.get(1.0, "end-1c")
+			self.to_eval+=(n)
 			self.textarea.delete(1.0, "end")
-			self.textarea.insert(1.0,self.calculating_things)
+			self.textarea.insert(1.0,self.to_eval)
 	def buttons(self):
 		# When using the Command parm don't call the function with () just the name would do, and if you wanna use pass some arguments then use lambda
 		btn_del= Button(self.window, {"bd":5,"height":2, "width":7}, text="DEL", bg="red" ,font=("Arial", FONT, "bold"),command= lambda:self.delete())
@@ -143,14 +145,14 @@ class Calculator:
 		btn_square = Button(self.window, button_digits, text="x\u00B2", command=lambda: self.bracket_fun("sq"))
 		btn_square.grid(row=6, column=5)		
 
-		btn_cube = Button(self.window, button_digits, text="x\u00B3", command=lambda: self.bracket_fun("cube"))
-		btn_cube.grid(row=6, column=4)
+		btn_ypower = Button(self.window, button_digits, text="x\u02B8", command=lambda: self.bracket_fun("ypower"))
+		btn_ypower.grid(row=6, column=4)
 
-		btn_log = Button(self.window, button_special, text="log\u2081\u2080", command=lambda: self.calcuating_func("log"))
+		btn_log = Button(self.window, button_special, text="log\u2091", command=lambda: self.calcuating_func("log[e]<>"))
 		btn_log.grid(row=4, column=1)
 
-		btn_ln = Button(self.window, button_special, text="ln", command=lambda: self.bracket_fun("ln"))
-		btn_ln.grid(row=4, column=2)
+		btn_log2 = Button(self.window, button_special, text="log\u2093y", command=lambda: self.bracket_fun("log"))
+		btn_log2.grid(row=4, column=2)
 
 		btn_10power = Button(self.window, button_special, text="10^x", command=lambda: self.bracket_fun("10x"))
 		btn_10power.grid(row=4, column=3)
@@ -183,7 +185,7 @@ class Calculator:
 		text = self.textarea.get(1.0, "end-1c")
 		self.textarea.delete(1.0, "end")
 
-		if _type == "ln":
+		if _type == "log":
 			self.textarea.insert(1.0,f"{text}{_type}[]<>")
 			return
 		if _type == "x!":
@@ -198,11 +200,11 @@ class Calculator:
 		if _type in ["10x", "ex"]:
 			self.textarea.insert(1.0,f"{text}{_type[:-1]}^<>")
 			return
-		if _type == "cube":
-			self.textarea.insert(1.0, f"{text}<>^3")
+		if _type == "ypower":
+			self.textarea.insert(1.0, f"{text}x^<y>")
 			return
 		if _type == "sq":
-			self.textarea.insert(1.0, f"{text}<>^2")
+			self.textarea.insert(1.0, f"{text}x^<2>")
 			return
 
 		self.textarea.insert(1.0,f"{text}{_type}<>")
