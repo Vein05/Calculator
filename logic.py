@@ -7,10 +7,6 @@ class Calculation:
 	def __init__(self, given):
 		self.given = given.replace(" ", "")
 		self.main()
-		print(eval(self.given))
-		# print((self.given))
-
-
 
 	def main(self):
 		self.given_list = [i for i in self.given ]
@@ -44,8 +40,6 @@ class Calculation:
 					if j == "cot":
 						to_replace=f'math.tan(1/{val})' 
 					self.given = re.sub(regex,to_replace,self.given,count=1)
-
-
 
 		
 	def sub_factorial(self):
@@ -86,56 +80,10 @@ class Calculation:
 			to_replace = f'math.log({x},{y})'
 			self.given = re.sub(regex,to_replace,self.given,count=1)
 
+	def result(self):
+		return eval(self.given)
 
 # Calculation("5^<20>+10^<5>")
-Calculation("e^<5>+log[10]<5>+e+π+1+5+(96+36)*sin<23>+5!+(50+9)+6*10^<6>-√<4>*(5+3)+tan<50>+cos<60>")
+# Calculation("e^<5>+log[10]<5>+e+π+1+5+(96+36)*sin<23>+5!+(50+9)+6*10^<6>-√<4>*(5+3)+tan<50>+cos<60>")
 # Calculation("√<4> + 5 ")
 
-
-
-
-
-
-
-
-# for i,j in enumerate(given_list):
-# 	if j == "!":
-# 		number = 
-# given_dict = {}
-# for i, j in enumerate(given_list):
-# 	given_dict[i] = j
-
-# only_brackets=""
-# def get_bracket(given,given_list):
-# 	already_done = []
-# 	for i,j in enumerate(given_list):
-# 		if j in ["+", "-", "*", "/", "(", ")"]:
-# 			if j=="(":
-# 				# print(i, given_dict[i])
-# 				for k,l in enumerate(given_list):
-# 					if l==")":
-# 						# print(k, given_dict[k])
-# 						already_done.append(i)
-# 						already_done.append(k)
-
-# 	return already_done
-# inside_bracket = sorted(set(get_bracket(given,given_list)))
-# for i,j in enumerate(inside_bracket):
-# 	if i % 2 != 0:
-# 		continue 
-# 	n = i+1
-# 	try:
-# 		found = (given[inside_bracket[i]:inside_bracket[n]+1])
-# 		# calc = eval(found)
-# 		print(found)
-# 		# re.sub(found,str(calc), given)
-# 		# print(given)
-# 	except IndexError:
-# 		pass
-
-# def get_arithmetic(given):
-# 	allowed="0123456789+-/*"
-# 	clean="".join(char for char in given if char in allowed)
-# 	print(clean)
-
-# get_arithmetic(given)
