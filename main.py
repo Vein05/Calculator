@@ -1,23 +1,24 @@
 from tkinter import *
 import math, re
+from logic import Calculation
 
 π = math.pi
 e = math.e
 
-class Calculation:
+# class Calculation:
 
-	def __init__(self, to_calculate):
-		self.to_calculate = to_calculate 
-		self.main()
+# 	def __init__(self, to_calculate):
+# 		self.to_calculate = to_calculate 
+# 		self.main()
 
-	def main(self):
-		dividers=['+-/*']
-		re.split(dividers, self.to_calculate)
+# 	def main(self):
+# 		dividers=['+-/*']
+# 		re.split(dividers, self.to_calculate)
 
 
 
-	def result(self):
-		return self.final_result
+# 	def result(self):
+# 		return self.final_result
 
 
 FONT=14
@@ -29,9 +30,9 @@ class Calculator:
 	def __init__(self):
 		# Creates a Window for the calculator and initializes many things that are needed to run the calc aap
 		self.window = Tk()
-		self.height = 700
-		self.width = 740
-		self.window.geometry(f"{self.height}x{self.width}")
+		self.height =580
+		self.width = 570
+		# self.window.geometry(f"{self.height}x{self.width}")
 		# self.main_frame=Frame(self.window, width=400, height=400, bg="black")
 		# self.main_frame.grid(row=0, column=0, padx=10, pady=5)
 		self.window.resizable(0,0)
@@ -42,7 +43,7 @@ class Calculator:
 		self.to_eval = ""
 
 	def textarea_func(self):
-		self.textarea=Text(self.window,height="3", width="28",font=("Arial", 25, "bold"))
+		self.textarea=Text(self.window,height="3", width="27",font=("Arial", 25, "bold"))
 		self.textarea.tag_configure("right",justify='right')
 		self.textarea.tag_add("center", 1.0, "end")
 		self.textarea.grid(row=1,columnspan=self.width)
@@ -165,16 +166,9 @@ class Calculator:
 
 
 	def onequals(self, string):
-		self.result = Calculation(string).main()
-		# allowed_basic ="0123456789+-/*()"
-		# clean="".join(char for char in string if char in allowed_basic)
-		# self.calculating_things=""
-		# try:
-		# 	text = self.textarea.get(1.0, "end-1c")
-		# 	self.textarea.delete(1.0, "end")
-			# self.textarea.insert(1.0,f"{text} = {eval(clean)}")
-		# except SyntaxError:
-		# 	print("Incorrect syntax used.")
+		self.result = Calculation(string).result()
+		self.textarea.delete(1.0, "end")
+		self.textarea.insert(1.0,f"{string} = {self.result}")		
 
 	def delete(self):
 		self.textarea.delete(1.0, "end")
