@@ -5,21 +5,6 @@ from logic import Calculation
 π = math.pi
 e = math.e
 
-# class Calculation:
-
-# 	def __init__(self, to_calculate):
-# 		self.to_calculate = to_calculate 
-# 		self.main()
-
-# 	def main(self):
-# 		dividers=['+-/*']
-# 		re.split(dividers, self.to_calculate)
-
-
-
-# 	def result(self):
-# 		return self.final_result
-
 
 FONT=14
 button_digits={"bd":"5","bg":"#BBB","fg":"#000","height":2, "width":7, "font":('Arial', FONT, 'bold')}
